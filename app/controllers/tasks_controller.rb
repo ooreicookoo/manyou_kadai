@@ -11,7 +11,7 @@ class TasksController < ApplicationController
       render :new
     else
       if @task.save
-        redirect_to tasks_path, notice:"task追加"
+        redirect_to tasks_path, notice:"タスクの登録が完了しました"
       else
         render :new
       end
@@ -20,6 +20,9 @@ class TasksController < ApplicationController
   def edit
   end
   def show
+    @task = Task.find(params[:id])
+  end
+  def destroy
   end
   private
   def task_params
