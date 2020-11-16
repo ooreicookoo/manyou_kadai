@@ -12,9 +12,6 @@
   <tr>
     <td><%= task.title %></td>
     <td><%= task.content %></td>
-    <td><%= task.priority %></td>
-    <td><%= task.status %></td>
-    <td><%= task.limit %></td>
     <td><%= link_to '詳細', task_path(task.id) %></td>
     <td><%= link_to '編集', edit_task_path(task.id) %></td>
     <td><%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
