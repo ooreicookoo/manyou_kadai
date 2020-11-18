@@ -32,7 +32,7 @@ ___
 `$ rails assets:precompile RAILS_ENV=production`
 
 3.コミットする  
-`$ git add -A  `
+`$ git add -A  `  
 `$ git commit -m "コミットメッセージ"  `
 
 4.herokuに新しいアプリケーションを作成  
