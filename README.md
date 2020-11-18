@@ -26,20 +26,20 @@ ___
 ***Herokuへのデプロイ方法***
   
 1.herokuにログインする  
-$ heroku login  
+`$ heroku login`  
 
 ２.アセットプリコンパイル実行  
-$ rails assets:precompile RAILS_ENV=production  
+`$ rails assets:precompile RAILS_ENV=production`
 
 3.コミットする  
-$ git add -A  
-$ git commit -m "コミットメッセージ"  
+`$ git add -A  `
+`$ git commit -m "コミットメッセージ"  `
 
 4.herokuに新しいアプリケーションを作成  
-$ heroku create  
+`$ heroku create  `
     
 5.Herokuにデプロイ  
-$ git push heroku master  
+`$ git push heroku master `
   
 6.マイグレーションを行う  
-$ heroku run rails db:migrate  
+`$ heroku run rails db:migrate `
