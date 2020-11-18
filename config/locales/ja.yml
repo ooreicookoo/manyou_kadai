@@ -1,8 +1,17 @@
 ---
 ja:
+  view:
+    tasks:
+      index:
+        Are you sure?: 本当に削除しますか？
+        Show: 詳細
+        Edit: 編集
+        Destroy: 削除
+        New Task: 新規登録
   activerecord:
     errors:
       messages:
+        count_message: 件のエラーがあります
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
@@ -119,7 +128,7 @@ ja:
       greater_than: は%{count}より大きい値にしてください
       greater_than_or_equal_to: は%{count}以上の値にしてください
       inclusion: は一覧にありません
-      invalid: は不正な値です
+      invalid: の書式が正しくありません
       less_than: は%{count}より小さい値にしてください
       less_than_or_equal_to: は%{count}以下の値にしてください
       model_invalid: 'バリデーションに失敗しました: %{errors}'
