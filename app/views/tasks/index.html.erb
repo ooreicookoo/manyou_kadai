@@ -10,12 +10,13 @@
   </tr>
 <% @tasks.each do |task| %>
   <tr>
-    <td><%= task.title %></td>
-    <td><%= task.content %></td>
-    <td><%= link_to '詳細', task_path(task.id) %></td>
-    <td><%= link_to '編集', edit_task_path(task.id) %></td>
-    <td><%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td class="task_row"><%= task.title %></td>
+    <td class="task_row"><%= task.content %></td>
+    <td class="task_row"><%= l task.created_at %></td>
+    <td class="task_row"><%= link_to t('view.tasks.index.Show'), task %></td>
+    <td class="task_row"><%= link_to t('view.tasks.index.Edit'), edit_task_path(task) %></td>
+    <td class="task_row"><%= link_to t('view.tasks.index.Destroy'), task, method: :delete, data: { confirm: t('view.tasks.index.Are you sure?') } %></td>
   </tr>
 <% end %>
-  <%= link_to '新規登録', new_task_path, class: '' %>
+  <%= link_to t('view.tasks.index.New Task'), new_task_path, class: '' %>
 </table>
