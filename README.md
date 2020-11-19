@@ -1,4 +1,4 @@
-**データベース**
+***データベース***
 
 Userテーブル
 |  カラム名  |  データ型  |
@@ -20,3 +20,26 @@ Labelテーブル
 |  カラム名  |  データ型  |
 | ---- | ---- |
 | task_id | bigint |
+  
+___
+    
+***Herokuへのデプロイ方法***
+  
+1.herokuにログインする  
+`$ heroku login`  
+
+２.アセットプリコンパイル実行  
+`$ rails assets:precompile RAILS_ENV=production`
+
+3.コミットする  
+`$ git add -A  `  
+`$ git commit -m "コミットメッセージ"  `
+
+4.herokuに新しいアプリケーションを作成  
+`$ heroku create  `
+    
+5.Herokuにデプロイ  
+`$ git push heroku master `
+  
+6.マイグレーションを行う  
+`$ heroku run rails db:migrate `
