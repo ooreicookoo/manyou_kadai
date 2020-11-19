@@ -8,6 +8,11 @@ ja:
         Edit: 編集
         Destroy: 削除
         New Task: 新規登録
+        Title: タイトル
+        Content: 内容
+        Priority: 優先順位
+        Status: ステータス
+        Limit: 期限
   activerecord:
     errors:
       messages:
