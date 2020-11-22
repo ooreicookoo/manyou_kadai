@@ -21,5 +21,9 @@
   <%= form.label :limit %>
   <%= form.text_field :content %>
   </div>
+  <div class="field">
+  <%= form.label :status %>
+  <%= form.select :statsu,["未着手","着手","完了"] %>
+  </div>
   <%= form.submit %>
 <% end %>
