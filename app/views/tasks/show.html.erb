@@ -1,12 +1,16 @@
 <p><%= notice %></p>
 
 <p>
-<strong>タスク名：</strong>
+<strong>Title：</strong>
   <%= @task.title %>
 </p>
 <p>
-  <strong>内容:</strong>
+  <strong>Content:</strong>
   <%= @task.content %>
+</p>
+<p>
+  <strong>Limit:</strong>
+  <%= @task.limit %>
 </p>
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

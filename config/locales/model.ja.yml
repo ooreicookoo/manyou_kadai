@@ -6,3 +6,6 @@ ja:
       task:
         title: タイトル
         content: 詳細
+        priority: 優先順位
+        status: ステータス
+        limit: 期限
