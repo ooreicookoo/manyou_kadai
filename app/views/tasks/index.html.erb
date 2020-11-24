@@ -8,6 +8,7 @@
     <th>Status</th>
     <th>Limit</th>
   </tr>
+  <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
 <% @tasks.each do |task| %>
   <tr>
     <td class="task_row"><%= task.title %></td>

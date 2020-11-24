@@ -19,11 +19,15 @@
   </div>
   <div class="field">
   <%= form.label :limit %>
-  <%= form.text_field :content %>
+  <%= form.datetime_select :limit %>
   </div>
   <div class="field">
   <%= form.label :status %>
   <%= form.select :statsu,["未着手","着手","完了"] %>
+  </div>
+  <div class="field">
+  <%= form.label :priority %>
+  <%= form.select :priority,["高","中","低"] %>
   </div>
   <%= form.submit %>
 <% end %>
