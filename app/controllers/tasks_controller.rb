@@ -6,7 +6,7 @@ class TasksController < ApplicationController
     elsif params[:sort_priority]
       @tasks = Task.all.order(priority: :asc)
     else
-      @tasks = Task.all.order(created_at: :asc)
+      @tasks = Task.all.order(created_at: :desc)
     end
 
     if params[:search].present?
