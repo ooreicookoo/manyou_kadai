@@ -5,7 +5,7 @@ FactoryBot.define do
   factory :task, class: Task do
     title { 'Factoryで作ったデフォルトのタイトル1' }
     content { 'Factoryで作ったデフォルトのコンテント1' }
-    limit { '2020-09-02 12:00:00'}
+    limit { '2020/09/02 12:00:00'}
   end
 
 end
