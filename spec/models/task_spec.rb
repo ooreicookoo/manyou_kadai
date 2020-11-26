@@ -24,13 +24,13 @@ RSpec.describe Task, type: :model do
   end
 
   describe '検索機能' do
-    let!(:task) {FactoryBot.create(:task, :title: "today")}
-    let!(:task) {FactoryBot.create(:task2, :title: "tomorrow")}
+    let!(:task) {FactoryBot.create(:task, :title: 'task', content: "rails", status: "完了")}
+    let!(:task) {FactoryBot.create(:task2, :title: "today", content: "JavaScript", status: "着手")}
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り混まれる" do
-        expect(Task.title_search('test').to include(today))
-        expect(Task.title_search('test').not_to include(tomorrow))
-        expect(Task.title_search('test').count).to eq 1
+        expect(Task.title_search('task').to include(task))
+        expect(Task.title_search('task').not_to include(task2))
+        expect(Task.title_search('task').count).to eq 1
       end
     end
       context 'scopeメソッド でステータス検索をした場合' do
@@ -40,7 +40,7 @@ RSpec.describe Task, type: :model do
       end
       context 'scopeメソッド でタイトルのあいまい検索とステータス検索をした場合' do
         it "検索キーワードをタイトルに含み、かつステータスに完全に一致するタスクが絞りこまれる" do
-        expect(Task.title_search('task2').status_serch('着手').count).to eq 1
+        expect(Task.title_search('task').status_serch('完了').count).to eq 1
       end
     end
   end

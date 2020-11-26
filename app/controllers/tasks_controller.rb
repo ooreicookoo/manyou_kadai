@@ -18,11 +18,11 @@ class TasksController < ApplicationController
       elsif params[:status].present?
         @tasks = Task.status_search(params[:status]).page(params[:page]).per(PER)
       else
-        @tasks = Task.all.order(created_at: :desc).page(params[:page]).per(PER)
+        @tasks = Task.all.order(created_at: :desc)
       end
     end
 
-    @tasks = @tasks.page(params[:page]).per(10)
+    @tasks = @tasks.page(params[:page]).per(PER)
 
   end
 
