@@ -6,6 +6,8 @@ FactoryBot.define do
     title { 'Factoryで作ったデフォルトのタイトル1' }
     content { 'Factoryで作ったデフォルトのコンテント1' }
     limit { '2020/09/02 12:00:00'}
+    status {'完了'}
+    priority {'高'}
   end
 
 end
