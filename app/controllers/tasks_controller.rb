@@ -36,7 +36,7 @@ class TasksController < ApplicationController
       render :new
     else
       if @task.save
-        redirect_to tasks_path, notice:"task追加"
+        redirect_to tasks_path, notice:"task追加しました"
       else
         render :new
       end
