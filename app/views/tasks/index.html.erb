@@ -1,10 +1,10 @@
-<div class="container-fluid">
+<div class="container">
   <p class="notice"><%= notice %></p>
   <div class="row">
     <div class="col align-self-start"><h1>Tasks</h1></div>
     <br>
   </div>
-  <div class="row justify-content-around">
+  <!-- <div class="row justify-content-around">
       <%= form_with(url: tasks_path, method: :get, local: true) do |f| %>
         <%= f.text_field :title ,placeholder: "検索", value: params[:title], class: "form-group form-control" %>
         <%= f.select :status, ['未着手', '着手', '完了'], {include_blank: "Status" },{ class: 'form-control drop'} %>
@@ -12,12 +12,13 @@
         <%= f.hidden_field :search, value:"true" %>
         <%= f.submit "Search", class: "btn btn-outline-secondary" %>
       <% end %>
-  </div>
+  </div> -->
 
 
   <br>
-  <%= link_to t('view.tasks.index.New Task'), new_task_path, class: "btn btn-outline-primary" %>
-
+  <button type="button" class="btn btn-default">
+  <%= link_to t('view.tasks.index.New Task'), new_task_path  %>
+  </button>
   <div class="table-responsive">
     <table class="table table-hover">
       <thead>
