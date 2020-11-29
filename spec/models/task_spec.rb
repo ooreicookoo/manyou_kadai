@@ -5,13 +5,11 @@ RSpec.describe Task, type: :model do
     describe 'バリデーションのテスト' do
       context 'タスクのタイトルが空の場合' do
         it 'バリデーションにひっかる' do
-          task = Task.new(title: '', content: 'タイトル失敗テスト')
+          task = Task.new(title: '', content: '失敗テスト')
           expect(task).not_to be_valid
         end
       end
-
       context 'タスクの詳細が空の場合' do
-        
         it 'バリデーションにひっかかる' do
           task = Task.new(title: '失敗テスト', content: '')
           expect(task).not_to be_valid
@@ -21,28 +19,30 @@ RSpec.describe Task, type: :model do
         it 'バリデーションが通る' do
           task = Task.new(title: '成功テスト', content: '成功テスト')
           expect(task).to be_valid
+        end
       end
     end
-  end
 
-  describe '検索機能' do
-    let!(:task) {FactoryBot.create(:task, :title: 'task', content: "rails", status: "完了")}
-    let!(:task) {FactoryBot.create(:task2, :title: "today", content: "JavaScript", status: "着手")}
-    context 'scopeメソッドでタイトルのあいまい検索をした場合' do
-      it "検索キーワードを含むタスクが絞り混まれる" do
-        expect(Task.title_search('task').to include(task))
-        expect(Task.title_search('task').not_to include(task2))
-        expect(Task.title_search('task').count).to eq 1
+    describe '検索機能' do
+      let!(:task) {FactoryBot.create(:task, title: 'task', content: "rails", status: "完了")}
+      let!(:task2) {FactoryBot.create(:task, title: 'today', content: "javascript", status: "着手")}
+      context 'scopeメソッドでタイトルのあいまい検索をした場合' do
+        it "検索キーワードを含むタスクが絞り込まれる" do
+          # title_seachはscopeで提示したタイトル検索用メソッドである。メソッド名は任意で構わない。
+          expect(Task.title_search('task')).to include(task)
+          expect(Task.title_search('task')).not_to include(task2)
+          expect(Task.title_search('task').count).to eq 1
+        end
       end
-    end
-      context 'scopeメソッド でステータス検索をした場合' do
-        it " ステータスに完全に一致するタスクが絞り込まれる" do
+      context 'scopeメソッドでステータス検索をした場合' do
+        it "ステータスに完全一致するタスクが絞り込まれる" do
           expect(Task.status_search('完了').count).to eq 1
         end
       end
-      context 'scopeメソッド でタイトルのあいまい検索とステータス検索をした場合' do
-        it "検索キーワードをタイトルに含み、かつステータスに完全に一致するタスクが絞りこまれる" do
-        expect(Task.title_search('task').status_serch('完了').count).to eq 1
+      context 'scopeメソッドでタイトルのあいまい検索とステータス検索をした場合' do
+        it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+          expect(Task.title_search('task').status_search('完了').count).to eq 1
+        end
       end
     end
   end
