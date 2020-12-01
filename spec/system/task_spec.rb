@@ -54,6 +54,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_on '優先順位'
         task_list_priority = all('.task_row_priority')
         expect(task_list_priority[0]).to have_content '高'
+        expect(task_list_priority[1]).to have_content '中'
         expect(task_list_priority[2]).to have_content '低'
       end
     end
