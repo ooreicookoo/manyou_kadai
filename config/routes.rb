@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :tasks
-  root to: 'users#new'
+  resources :tasks do
+  post :confirm, on: :collection
+  end
+  resources :users, only: [:new, :create, :show]
+  root to: 'users#top'
 end
