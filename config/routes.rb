@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   resources :tasks do
   post :confirm, on: :collection
   end
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create, :show, :edit]
   root to: 'users#top'
 end
