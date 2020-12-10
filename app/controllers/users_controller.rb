@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
-  before_action :check_user, only: [:edit, :update]
+  before_action :current_user
   def index
     @users = User.all
   end
   def new
-    @user = User.new
+    if logged_in?
+      redirect_to tasks_path
+    else
+      @user = User.new
+    end
   end
   def create
     @user = User.new(user_params)
@@ -30,18 +33,14 @@ class UsersController < ApplicationController
     end
   end
   def show
+    @user = User.find(params[:id])
+    if @current_user.id != @user.id
+      redirect_to tasks_path
+    end
   end
   private
-  def set_user
-    @user = User.find(params[:id])
-  end
   def user_params
     params.require(:user).permit(:id, :name, :email, :password,
                                  :password_confirmation)
-  end
-  def check_user
-    if current_user.id != @user.id
-       redirect_to user_path, notice: '権限がありません'
-    end
   end
 end
