@@ -14,13 +14,13 @@ class TasksController < ApplicationController
 
     if params[:search].present?
       if params[:title].present? && params[:status].present?
-        @tasks = Task.title_search(params[:title]).status_search(params[:status]).page(params[:page]).per(PER)
+        @tasks = current_user.tasks.title_search(params[:title]).status_search(params[:status]).page(params[:page]).per(PER)
       elsif params[:title].present?
-        @tasks = Task.title_search(params[:title]).page(params[:page]).per(PER)
+        @tasks = current_user.tasks.title_search(params[:title]).page(params[:page]).per(PER)
       elsif params[:status].present?
-        @tasks = Task.status_search(params[:status]).page(params[:page]).per(PER)
+        @tasks = current_user.tasks.status_search(params[:status]).page(params[:page]).per(PER)
       else
-        @tasks = Task.all.order(created_at: :desc)
+        @tasks = current_user.tasks.order(created_at: :desc)
       end
     end
 
@@ -33,7 +33,7 @@ class TasksController < ApplicationController
     @task = Task.new
   end
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if params[:back]
       render :new
     else
@@ -49,6 +49,7 @@ class TasksController < ApplicationController
   def edit
   end
   def update
+    @task = Task.find(params[:id])
     if params[:back]
       render  :edit
     else
@@ -60,7 +61,7 @@ class TasksController < ApplicationController
     end
   end
   def confirm
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     render :new if @task.invalid?
   end
   def destroy
