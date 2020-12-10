@@ -5,11 +5,11 @@ class TasksController < ApplicationController
   PER = 10
   def index
     if params[:sort_expired]
-      @tasks = Task.all.order(limit: :asc).page(params[:page]).per(PER)
+      @tasks = current_user.tasks.order(limit: :asc).page(params[:page]).per(PER)
     elsif params[:sort_priority]
-      @tasks = Task.all.order(priority: :asc).page(params[:page]).per(PER)
+      @tasks = current_user.tasks.order(priority: :asc).page(params[:page]).per(PER)
     else
-      @tasks = Task.all.order(created_at: :desc).page(params[:page]).per(PER)
+      @tasks = current_user.tasks.order(created_at: :desc).page(params[:page]).per(PER)
     end
 
     if params[:search].present?
