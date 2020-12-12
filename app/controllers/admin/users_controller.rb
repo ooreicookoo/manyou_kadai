@@ -1,4 +1,7 @@
 class Admin::UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :destroy]
+  before_action :current_user
+  before_action :current_user_admin
   def index
     @users = user.select(:id, :name, :email, :admin).includes(:tasks).page(params[:page].per(PER))
   end
@@ -6,7 +9,7 @@ class Admin::UsersController < ApplicationController
     @user = User.new
   end
   def create
-    @user = User.new(user_params)
+  @user = User.new(user_params)
     if @user.save
       redirect_to admin_users_path(@user.id)
     else
@@ -26,27 +29,28 @@ class Admin::UsersController < ApplicationController
       end
     end
   end
-def show
-  @tasks = @user.tasks.page(params[:page]).per(PER)
-end
-def destroy
-  if @user.destroy
-    redirect_to admin_users_path, notice: '削除しました'
-  else
-    redirect_to admin_users_path
+  def show
+    @tasks = @user.tasks.page(params[:page]).per(PER)
   end
-end
+  def destroy
+    if @user.destroy
+      redirect_to admin_users_path, notice: '削除しました'
+    else
+      redirect_to admin_users_path
+    end
+  end
 
-private
-def set_user
-  @user = User.find(params[:id])
-end
-def current_user_admin
-  unless current_user.admin
-    redirect_to tasks_path
+  private
+  def set_user
+    @user = User.find(params[:id])
   end
-end
-def user_params
-  params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
-end
+  def current_user_admin
+    unless current_user && current_user.admin == true
+      flash[:motice] = '管理者以外はアクセスできません'
+      redirect_to tasks_path
+    end
+  end
+  def user_params
+    params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
+  end
 end
