@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   before_action :current_user
-  def index
-    @users = User.all
-  end
+
   def new
     if logged_in?
       redirect_to tasks_path
@@ -17,17 +15,6 @@ class UsersController < ApplicationController
       redirect_to user_path(@user.id)
     else
       render :new
-    end
-  end
-  def update
-    if params[:back]
-      render :edit
-    else
-      if @user.update(user_params)
-        redirect_to user_path(@user.id), notice: '編集しました'
-      else
-        render :edit
-      end
     end
   end
   def show
