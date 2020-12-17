@@ -6,9 +6,9 @@ FactoryBot.define do
     password_confirmation { "password"}
     admin { "true"}
   end
-  factory :second_user do, class: User do
-    name { "TesutoTesto"}
-    emai { "tesuto@test.com"}
+  factory :second_user, class: User do
+    name { "ReikoEnomoto"}
+    emai { "reiko@gmail.com"}
     password { "123456"}
     password_confirmation { "123456"}
     admin { "false"}
