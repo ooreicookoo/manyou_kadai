@@ -47,10 +47,11 @@ RSpec.describe 'ユーザ管理機能', type: :system do
         fill_in "Email address", with: 'you002@gmail.com'
         fill_in "Password", with: 'you002'
         click_on 'Log in'
-        click_on 'ログアウト'
+        click_link 'Logout'
         expect(current_path).to eq new_session_path
       end
     end
+
     context '管理画面に遷移しようとすると' do
       it 'タスク一覧に遷移する' do
         visit new_session_path
@@ -107,9 +108,8 @@ RSpec.describe 'ユーザ管理機能', type: :system do
         expect(page).not_to have_content 'test'
       end
     end
-    context '一般ユーザがログイン時' do
-      it '管理画面にアクセスできない' do
-        click_on 'ログアウト'
+    context '一般ユーザでログイン時' do
+      it '一般ユーザーは管理画面にアクセスできない' do
         visit new_session_path
         fill_in "Email address", with: 'you002@gmail.com'
         fill_in "Password", with: 'you002'
