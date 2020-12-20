@@ -1,71 +1,68 @@
 require 'rails_helper'
-RSpec.describe ユーザ登録, type: :system do
+RSpec.describe 'ユーザ管理機能', type: :system do
   before do
-    @sencond_user = FactoryBot.create(:second_user)
+    @second_user = FactoryBot.create(:second_user)
     @user = FactoryBot.create(:user)
   end
-  describe '新規登録機能' do
+
+  describe '新規作成機能' do
     context 'ユーザを新規作成した場合' do
       it '作成したユーザが表示される' do
-      visit new_user_path
-      fill_in "name", with; "ShimizuKeiko"
-      fill_in "Email address", with; "Shimizu@gmail.com"
-      fill_in "Password", with; "098765"
-      fill_in "Password_confirmation", with; "098765"
-      click_button "Create"
-      expect(page).to have_content "Shimizu@gmail.com"
+        visit new_user_path
+        fill_in "user[name]", with: 'wakoEnomoto'
+        fill_in "user[email]", with: 'wako000@gmail.com'
+        fill_in "user[password]", with: 'wako000'
+        fill_in "user[password_confirmation]", with: 'wako000'
+        click_button "Create"
+        expect(page).to have_content 'wako000@gmail.com'
+      end
     end
-  end
-  context 'ユーザがログインせずタスク一覧画面に飛ぼうとした' do
-    it 'ログイン画面に遷移する' do
-      visit tasks_path
-      expect(page).t have_content 'ログイン'
+    context 'ユーザがログインせずタスク一覧に飛ぼうとした場合' do
+      it 'ログイン画面に遷移する' do
+        visit tasks_path
+        expect(page).to have_content 'ログイン'
       end
     end
   end
 
-  describe 'セッション機能のテスト' do
-    context 'ログインをしようとすると' do
-      it 'ログインができる' do
+  describe 'セッション機能' do
+    context 'ログインしようとすると' do
+      it 'ログインができること' do
         visit new_session_path
-        fill_in "Email address", with; "Shimizu@gmail.com"
-        fill_in "Password", with; "098765"
-        fill_in "Password_confirmation", with; "098765"
-        click_on "Log in"
-        expect(page).to have_content "Shimizu@gmail.com"
+        fill_in "Email address", with: 'you002@gmail.com'
+        fill_in "Password", with: 'you002'
+        click_on 'Log in'
+        expect(page).to have_content 'you002@gmail.com'
       end
-      it '他人の詳細画面に飛ぶとタスク一覧画面に遷移すると' do
+      it '他人の詳細画面に飛ぶとタスク一覧画面に遷移する' do
         visit new_session_path
-        ill_in "Email address", with; "Shimizu@gmail.com"
-        fill_in "Password", with; "098765"
-        fill_in "Password_confirmation", with; "098765"
-        click_on "Log in"
+        fill_in "Email address", with: 'you002@gmail.com'
+        fill_in "Password", with: 'you002'
+        click_on 'Log in'
         visit user_path(@user.id)
         expect(current_path).to eq tasks_path
       end
       it 'ログアウトができる' do
         visit new_session_path
-        ill_in "Email address", with; "Shimizu@gmail.com"
-        fill_in "Password", with; "098765"
-        fill_in "Password_confirmation", with; "098765"
-        click_on "Log in"
-        click_on "ログアウト"
-        visit user_path(@user.id)
+        fill_in "Email address", with: 'you002@gmail.com'
+        fill_in "Password", with: 'you002'
+        click_on 'Log in'
+        click_on 'ログアウト'
         expect(current_path).to eq new_session_path
       end
     end
     context '管理画面に遷移しようとすると' do
       it 'タスク一覧に遷移する' do
         visit new_session_path
-        ill_in "Email address", with; "Shimizu@gmail.com"
-        fill_in "Password", with; "098765"
-        fill_in "Password_confirmation", with; "098765"
-        click_on "Log in"
-        visit admin_user_path
+        fill_in "Email address", with: 'you002@gmail.com'
+        fill_in "Password", with: 'you002'
+        click_on 'Log in'
+        visit admin_users_path
         expect(current_path).to eq tasks_path
       end
     end
   end
+
 
   describe '管理機能' do
     before do
@@ -74,13 +71,13 @@ RSpec.describe ユーザ登録, type: :system do
       fill_in "Password", with: 'password'
       click_on 'Log in'
     end
-    context '管理ユーザー' do
-      it '管理画面にアクセスできる' do
-        visit admin_user_path
+    context '管理ユーザ' do
+      it '管理画面のアクセスできる' do
+        visit admin_users_path
         expect(page).to have_content 'Users'
       end
       it 'ユーザの新規登録ができる' do
-        visit admin_user_path
+        visit admin_users_path
         click_on 'new'
         fill_in "name", with: 'test'
         fill_in "Email address", with: 'test@test.com'
@@ -89,36 +86,35 @@ RSpec.describe ユーザ登録, type: :system do
         click_button "Create"
         expect(page).to have_content 'test@test.com'
       end
-      it 'ユーザの詳細画面にアクセス' do
-        visit admin_user_path(second_user.id)
-        expect(page).to have_content "shimizu@gmail.com"
+      it 'ユーザの詳細画面にアクセスできる' do
+        visit admin_user_path(@second_user.id)
+        expect(page).to have_content 'you002@gmail.com'
       end
-      it 'ユーザの編集画面からユーザを編集' do
-        visit edid_admin_user_path(@second_user.id)
-        fill_in "name", with: 'ShimizuKeiko'
-        fill_in "Email address", with: 'shimizu@takeru.com'
-        fill_in "Password", with: '098765'
-        fill_in "Password_confirmation", with: '098765'
+      it 'ユーザの編集画面からユーザを編集できる' do
+        visit edit_admin_user_path(@second_user.id)
+        fill_in "name", with: 'Moto'
+        fill_in "Email address", with: 'you002@gmail.com'
+        fill_in "Password", with: 'you002'
+        fill_in "Password_confirmation", with: 'you002'
         click_on 'Create'
-        expect(page).to have_content 'shimizu@takeru.com'
+        expect(page).to have_content 'you002@gmail.com'
       end
-      it 'ユーザーの削除ができる' do
-        visit admin_user_path
+      it 'ユーザの削除ができる' do
+        visit admin_users_path
         page.accept_confirm do
-          click_on :delete_button
+          first('tbody tr').click_on 'delete'
         end
         expect(page).not_to have_content 'test'
       end
     end
-    context '一般ユーザがログインしようとすると' do
+    context '一般ユーザがログイン時' do
       it '管理画面にアクセスできない' do
         click_on 'ログアウト'
         visit new_session_path
-        fill_in "name", with: 'ShimizuKeiko'
-        fill_in "Email address", with: 'shimizu@takeru.com'
-        fill_in "Password", with: '098765'
-        fill_in "Password_confirmation", with: '098765'
+        fill_in "Email address", with: 'you002@gmail.com'
+        fill_in "Password", with: 'you002'
         click_on 'Log in'
+        visit admin_users_path
         expect(current_path).to eq tasks_path
       end
     end

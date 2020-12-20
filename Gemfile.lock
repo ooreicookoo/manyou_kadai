@@ -83,6 +83,12 @@ GEM
     concurrent-ruby (1.1.7)
     crass (1.0.6)
     database_cleaner (1.8.5)
+    database_cleaner-active_record (1.8.0)
+      activerecord
+      database_cleaner (~> 1.8.0)
+    database_cleaner-redis (1.8.0)
+      database_cleaner (~> 1.8.0)
+      redis
     debug_inspector (0.0.3)
     diff-lcs (1.4.4)
     erubi (1.10.0)
@@ -179,6 +185,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.5)
     regexp_parser (1.8.2)
     rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
@@ -264,6 +271,8 @@ DEPENDENCIES
   capybara (>= 2.15)
   coffee-rails (~> 4.2)
   database_cleaner
+  database_cleaner-active_record
+  database_cleaner-redis
   factory_bot_rails
   faker
   jbuilder (~> 2.5)
