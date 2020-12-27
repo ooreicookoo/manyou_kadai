@@ -1,0 +1,15 @@
+current directory: /Users/enomotoreiko/workspace/manyou/vendor/bundle/ruby/2.6.0/gems/debug_inspector-0.0.3/ext/debug_inspector
+/Users/enomotoreiko/.rbenv/versions/2.6.5/bin/ruby -I /Users/enomotoreiko/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20201208-7466-rvgy5a.rb extconf.rb
+creating Makefile
+
+current directory: /Users/enomotoreiko/workspace/manyou/vendor/bundle/ruby/2.6.0/gems/debug_inspector-0.0.3/ext/debug_inspector
+make "DESTDIR=" clean
+
+current directory: /Users/enomotoreiko/workspace/manyou/vendor/bundle/ruby/2.6.0/gems/debug_inspector-0.0.3/ext/debug_inspector
+make "DESTDIR="
+compiling debug_inspector.c
+linking shared-object debug_inspector.bundle
+
+current directory: /Users/enomotoreiko/workspace/manyou/vendor/bundle/ruby/2.6.0/gems/debug_inspector-0.0.3/ext/debug_inspector
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 debug_inspector.bundle ./.gem.20201208-7466-jzh9sv
