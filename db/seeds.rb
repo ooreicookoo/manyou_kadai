@@ -19,8 +19,22 @@
   end
 
   User.create!(name:  "管理者",
-             email: "admin@example.jp",
-             password:  "password",
-             password_confirmation: "password",
-             admin: true
-             )
+               email: "admin@example.jp",
+               password:  "password",
+               password_confirmation: "password",
+               admin: true
+               )
+  10.times do |i|
+    Label.create!(name: "sample#{i + 1}")
+  end
+
+  10.times do |k|
+    Task.create!(
+    title:"task#{k + 1}",
+    content: "content#{k + 1}",
+    limit_date: '2021-01-01 00:00:00',
+    status: '着手'
+    priority: 2,
+    user_id: User.first.id + k
+  )
+end
