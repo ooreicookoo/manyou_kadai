@@ -19,12 +19,12 @@ Taskテーブル
 Labelテーブル
 |  カラム名  |  データ型  |
 | ---- | ---- |
-| task_id | bigint |
-  
+| name | string |
+
 ___
-    
+
 ***Herokuへのデプロイ方法***
-  
+
 1.herokuにログインする  
 `$ heroku login`  
 
@@ -37,9 +37,9 @@ ___
 
 4.herokuに新しいアプリケーションを作成  
 `$ heroku create  `
-    
+
 5.Herokuにデプロイ  
 `$ git push heroku master `
-  
+
 6.マイグレーションを行う  
 `$ heroku run rails db:migrate `
