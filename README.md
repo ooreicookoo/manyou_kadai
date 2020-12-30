@@ -19,7 +19,7 @@ Taskテーブル
 Labelテーブル
 |  カラム名  |  データ型  |
 | ---- | ---- |
-| name | bigint |
+| name | string |
 
   
 ___
