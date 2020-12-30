@@ -19,7 +19,8 @@ Taskテーブル
 Labelテーブル
 |  カラム名  |  データ型  |
 | ---- | ---- |
-| task_id | bigint |
+| name | bigint |
+
   
 ___
     
