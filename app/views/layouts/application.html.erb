@@ -51,6 +51,7 @@
               <%= f.text_field :title ,placeholder: "検索", value: params[:title], class: "form-group form-control" %>
               <%= f.select :status, ['未着手', '着手', '完了'], {include_blank: "Status" },{ class: 'form-control drop'} %>
               <%= f.select :priority, ["高","中","低"], {include_blank: "Priority" }, { class: 'form-control drop'} %>
+              <%= f.select("label_id", Label.pluck(:name, :id),{ include_blank: "Labels"}, {class: 'form-control drop'}) %>
               <%= f.hidden_field :search, value:"true" %>
               <%= f.submit "Search", class: "btn btn-outline-secondary" %>
             <% end %>

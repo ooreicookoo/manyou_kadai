@@ -32,8 +32,8 @@
     Task.create!(
     title:"task#{k + 1}",
     content: "content#{k + 1}",
-    limit_date: '2021-01-01 00:00:00',
-    status: '着手'
+    limit_date: '2020-09-14 00:00:00',
+    status: '着手',
     priority: 2,
     user_id: User.first.id + k
   )
