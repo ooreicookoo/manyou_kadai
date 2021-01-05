@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :current_user
   before_action :authenticate_user
+
   PER = 10
   def index
     if params[:sort_expired]
@@ -33,6 +34,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
   end
+
   def create
     @task = current_user.tasks.build(task_params)
     if params[:back]
@@ -51,8 +53,11 @@ class TasksController < ApplicationController
   end
   def update
     @task = Task.find(params[:id])
-    if params[:back]
-      render  :edit
+    unless params[:task][:label_ids]
+      @task.labelings.delete_all
+    end
+      if params[:back]
+        render :edit
     else
       if @task.update(task_params)
         redirect_to tasks_path, notice:"編集しました"

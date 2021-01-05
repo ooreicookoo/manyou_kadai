@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   private
   def destroy_admin_user
-    if User.where(admin: true).count == 1 && self.admin == true
+    if User.where(admin: true).count <= 1 && self.admin == true
       throw(:abort)
     end
   end

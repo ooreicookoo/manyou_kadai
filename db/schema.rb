@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 2020_12_30_103747) do
   create_table "tasks", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.date "limit", default: -> { "now()" }, null: false
     t.integer "status", default: 0, null: false
     t.integer "priority", default: 0, null: false
