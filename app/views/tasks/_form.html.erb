@@ -1,39 +1,48 @@
 <%= form_with(model: @task, local: true) do |form| %>
   <% if @task.errors.any? %>
-     <div id="error_explanation">
-       <h2><%= @task.errors.count %><%= t('activerecord.erros.messages.count_message') %></h2>
-       <ul>
-      <% @task.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+    <div id="error_explanation">
+      <h2><%= @task.errors.count %><%= t('activerecord.errors.messages.count_message') %></h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
+
   <div class="field">
-  <%= form.label :title %>
-  <%= form.text_field :title %>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
   </div>
+
   <div class="field">
-  <%= form.label :content %>
-  <%= form.text_field :content %>
+    <%= form.label :content %>
+    <%= form.text_area :content %>
   </div>
+
   <div class="field">
-  <%= form.label :limit %>
-  <%= form.datetime_select :limit %>
+    <%= form.label :limit %>
+    <%= form.datetime_select :limit %>
   </div>
+
   <div class="field">
-  <%= form.label :status %>
-  <%= form.select :status,["未着手","着手","完了"] %>
+    <%= form.label :status %>
+    <%= form.select :status,["未着手","着手","完了"] %>
   </div>
+
   <div class="field">
-  <%= form.label :priority %>
-  <%= form.select :priority,["高","中","低"] %>
+    <%= form.label :priority %>
+    <%= form.select :priority,["高","中","低"] %>
   </div>
+
+  <br>
+
   <div class="field">
     <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
   </div>
 
   <div class="actions">
-  <%= form.submit %>
+    <%= form.submit %>
   </div>
 <% end %>

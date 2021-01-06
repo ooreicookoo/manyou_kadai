@@ -67,10 +67,6 @@ class TasksController < ApplicationController
     end
   end
 
-  def confirm
-    @task = current_user.tasks.build(task_params)
-    render :new if @task.invalid?
-  end
   def destroy
     @task.destroy
     redirect_to tasks_path, notice:"削除しました"

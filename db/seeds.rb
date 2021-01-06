@@ -25,7 +25,8 @@
                admin: true
                )
   10.times do |i|
-    Label.create!(name: "sample#{i + 1}")
+    label = Label.create!(name: "sample#{i + 1}")
+    puts label
   end
 
   10.times do |k|
