@@ -37,6 +37,7 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.build(task_params)
+    user_id = @current_user.id
     if params[:back]
       render :new
     else
@@ -78,5 +79,9 @@ class TasksController < ApplicationController
   end
   def set_task
     @task = Task.find(params[:id])
+    unless @task.user == current_user
+      redirect_to tasks_path
+    end
   end
+
 end

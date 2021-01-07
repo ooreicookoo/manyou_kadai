@@ -54,7 +54,7 @@ RSpec.describe 'ラベル機能', type: :system do
     end
     context 'タスクを編集した場合' do
       it 'タスクと一緒にラベルを編集できる' do
-        click_on 'Edit'
+        click_on '編集'
         check 'Label_2'
         click_button "更新する"
         expect(page).to have_content 'Label_1'
@@ -62,7 +62,7 @@ RSpec.describe 'ラベル機能', type: :system do
       end
       it 'ラベルを削除できる' do
         visit tasks_path
-        click_on 'Edit'
+        click_on '編集'
         uncheck 'Label_1'
         uncheck 'Label_2'
         click_button "更新する"
