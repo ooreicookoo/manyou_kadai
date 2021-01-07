@@ -48,10 +48,13 @@ class TasksController < ApplicationController
       end
     end
   end
+  
   def show
   end
+
   def edit
   end
+
   def update
     @task = Task.find(params[:id])
     unless params[:task][:label_ids]
