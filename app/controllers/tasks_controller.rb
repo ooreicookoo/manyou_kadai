@@ -25,7 +25,7 @@ class TasksController < ApplicationController
       end
     end
 
-    @tasks = Task.all
+    @tasks = current_user.tasks.all
     @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }).page(params[:page]).per(PER) if params[:label_id].present?
     @tasks = @tasks.page(params[:page]).per(PER)
 
