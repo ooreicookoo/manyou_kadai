@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user
 
   PER = 10
+  
   def index
     if params[:sort_expired]
       @tasks = current_user.tasks.order(limit: :asc).page(params[:page]).per(PER)
@@ -48,7 +49,7 @@ class TasksController < ApplicationController
       end
     end
   end
-  
+
   def show
   end
 
