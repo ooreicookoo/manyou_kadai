@@ -46,7 +46,7 @@
             <td class="task_row_priority"><%= task.priority %></td>
             <td class="task_row"><%= task.created_at.strftime('%Y/%m/%d') %></td>
             <td class="task_row_label"><% task.labels.each do |label| %>
-              <%= label.name %>
+            <%= label.name %>
             <% end %></td>
             <% if logged_in? && task.user.id == current_user.id %>
             <td class="task_row"><%= link_to '詳細', task_path(task.id), class: "btn btn-default" %></td>
